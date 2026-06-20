@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workshop Registration</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ── Animated background blobs ── -->
+  <div class="bg-blob blob-1"></div>
+  <div class="bg-blob blob-2"></div>
+  <div class="bg-blob blob-3"></div>
+
+  <div class="page-wrapper">
+
+    <!-- ═══════════ HERO HEADER ═══════════ -->
+    <header class="hero">
+      <div class="hero-icon">🎓</div>
+      <h1>Workshop Registration</h1>
+      <p>Secure your spot at our exclusive workshop series. Limited seats available!</p>
+    </header>
+
+    <!-- ═══════════ REGISTRATION FORM ═══════════ -->
+    <section class="card form-card">
+      <h2 class="card-title">
+        <span class="title-icon">📝</span> Register Now
+      </h2>
+
+      <!-- Toast notification area -->
+      <div id="toast" class="toast hidden"></div>
+
+      <form id="registrationForm" novalidate>
+
+        <div class="form-row">
+          <!-- Full Name -->
+          <div class="form-group">
+            <label for="name">Full Name <span class="required">*</span></label>
+            <div class="input-wrapper">
+              <span class="input-icon">👤</span>
+              <input type="text" id="name" name="name" placeholder="e.g. Priya Sharma" required />
+            </div>
+            <span class="error-msg" id="nameError"></span>
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email">Email Address <span class="required">*</span></label>
+            <div class="input-wrapper">
+              <span class="input-icon">✉️</span>
+              <input type="email" id="email" name="email" placeholder="priya@example.com" required />
+            </div>
+            <span class="error-msg" id="emailError"></span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <!-- Phone -->
+          <div class="form-group">
+            <label for="phone">Phone Number <span class="required">*</span></label>
+            <div class="input-wrapper">
+              <span class="input-icon">📱</span>
+              <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required />
+            </div>
+            <span class="error-msg" id="phoneError"></span>
+          </div>
+
+          <!-- Workshop -->
+          <div class="form-group">
+            <label for="workshop">Select Workshop <span class="required">*</span></label>
+            <div class="input-wrapper select-wrapper">
+              <span class="input-icon">🏫</span>
+              <select id="workshop" name="workshop" required>
+                <option value="">-- Choose a Workshop --</option>
+                <option value="Web Development Bootcamp">Web Development Bootcamp</option>
+                <option value="UI/UX Design Masterclass">UI/UX Design Masterclass</option>
+                <option value="Data Science with Python">Data Science with Python</option>
+                <option value="Machine Learning Fundamentals">Machine Learning Fundamentals</option>
+                <option value="Cloud Computing (AWS)">Cloud Computing (AWS)</option>
+                <option value="Cybersecurity Essentials">Cybersecurity Essentials</option>
+                <option value="Digital Marketing Strategy">Digital Marketing Strategy</option>
+              </select>
+            </div>
+            <span class="error-msg" id="workshopError"></span>
+          </div>
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn btn-primary">
+          <span class="btn-text">Register Now 🚀</span>
+          <span class="btn-loader hidden">⏳ Submitting…</span>
+        </button>
+
+      </form>
+    </section>
+
+    <!-- ═══════════ PARTICIPANTS TABLE ═══════════ -->
+    <section class="card table-card">
+      <div class="table-header">
+        <h2 class="card-title">
+          <span class="title-icon">👥</span>
+          Registered Participants
+          <span class="badge" id="countBadge">0</span>
+        </h2>
+        <button class="btn btn-download" id="downloadBtn" onclick="downloadDoc()">
+          ⬇️ Download .docx
+        </button>
+      </div>
+
+      <!-- Search bar -->
+      <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search by name, email, or workshop…"
+          oninput="filterTable()"
+        />
+      </div>
+
+      <!-- Table -->
+      <div class="table-wrapper">
+        <table id="participantsTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Workshop</th>
+              <th>Registered On</th>
+            </tr>
+          </thead>
+          <tbody id="participantsTbody">
+            <tr id="emptyRow">
+              <td colspan="6" class="empty-state">
+                <div class="empty-icon">📋</div>
+                <p>No participants yet. Be the first to register!</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Built with ❤️ using Node.js + Express + docx</p>
+    </footer>
+
+  </div><!-- end .page-wrapper -->
+
+  <script src="script.js"></script>
+</body>
+</html>
